@@ -30,14 +30,20 @@ class App extends Component {
   };
 
   changeFilter = (event) => {
-    this.setState({filter: event.currentTarget.value})
-  }
+    this.setState({ filter: event.currentTarget.value })
+  };
 
   getFilteredContacts = () => {
     const normalizedFilter = this.state.filter.toLocaleLowerCase();
     return this.state.contacts.filter(contact =>
       contact.name.toLocaleLowerCase().includes(normalizedFilter),
     )
+  };
+
+  deleteContact = contactId =>{
+  this.setState(prevState => ({
+    contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+  }))
   }
 
   render() {
@@ -50,7 +56,7 @@ class App extends Component {
         onChange={this.changeFilter}
         />
         <ContactList
-          contacts={this.getFilteredContacts()} />
+          contacts={this.getFilteredContacts()} onDeleteContact={this.deleteContact} />
       </div>
     )
   }
