@@ -1,10 +1,12 @@
 import { Component } from "react";
 
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 
 import ContactForm from "./ContactForm/ContactForm.jsx";
 import ContactList from "./ContactList/ContactList.jsx";
 import Filter from "./Filter/Filter.jsx";
+
+import s from "./App.module.css";
 
 class App extends Component {
 
@@ -61,8 +63,9 @@ class App extends Component {
     const changeFilter = this.changeFilter;
     const deleteContact = this.deleteContact;
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <div className={s.App}>
+        <div className={s.Phonebook}>
+          <h1>Phonebook</h1>
         <ContactForm onSubmit={addNewContact} contacts={contacts} />
         <h2>Contacts</h2>
         <Filter value={filter}
@@ -70,6 +73,7 @@ class App extends Component {
         />
         <ContactList
           contacts={getFilteredContacts} onDeleteContact={deleteContact} />
+        </div>
       </div>
     )
   }

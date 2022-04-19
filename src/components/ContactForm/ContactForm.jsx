@@ -3,9 +3,11 @@ import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types'; 
 
+import s from "./ContactForm.module.css";
+
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  number: yup.number().required(),
+  name: yup.string().required("enter a name, this is a required field"),
+  number: yup.number().required("enter a phone number, this is a required field"),
 });
 
 const initialValues = {
@@ -28,22 +30,24 @@ const ContactForm = ({ onSubmit }) => {
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={schema}>
-      <Form autoComplete='off'>
-        <label htmlFor={nameInputId}>Name</label>
+      <Form className={s.form} autoComplete='off'>
+        <label htmlFor={nameInputId} className={s.label}>Name</label>
         <Field
+          className={s.input}
           type="text"
           name="name"
           id={nameInputId}
         />
-        <ErrorMessage name="name" component="div" />
-        <label htmlFor={numberInputId}>Number</label>
+        <ErrorMessage className={s.error} name="name" component="div" />
+        <label htmlFor={numberInputId} className={s.label}>Number</label>
         <Field
+          className={s.input}
           type="tel"
           name="number"
           id={numberInputId}
         />
-        <ErrorMessage name="number" component="div" />
-        <button type='submit'>Add contact</button>
+        <ErrorMessage className={s.error} name="number" component="div" />
+        <button className={s.button} type='submit'>Add contact</button>
       </Form>
     </Formik>
   )
