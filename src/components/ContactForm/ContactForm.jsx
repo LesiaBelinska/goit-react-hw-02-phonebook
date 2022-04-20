@@ -7,7 +7,7 @@ import s from "./ContactForm.module.css";
 
 const schema = yup.object().shape({
   name: yup.string().required("enter a name, this is a required field"),
-  number: yup.number().required("enter a phone number, this is a required field"),
+  number: yup.string().min(8).max(13).required("enter a phone number, this is a required field"),
 });
 
 const initialValues = {
