@@ -28,7 +28,9 @@ class App extends Component {
       number,
     }
 
-    if (contacts.find(contact => contact.name === newContact.name)) {
+    const normalazedNewContactName = newContact.name.toLocaleLowerCase();
+
+    if (contacts.find(contact => contact.name.toLocaleLowerCase() === normalazedNewContactName)) {
       alert(`${newContact.name} is already in contacts`)
       return;
     };
